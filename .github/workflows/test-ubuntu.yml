@@ -15,4 +15,5 @@ jobs:
       - id: step1
         run: echo "test=Hello world" >> $GITHUB_OUTPUT
 
-      - run: echo "${{ steps.step1.outputs.test }}"
+      - name: step2
+        run: echo ${{ steps.step1.outputs.test }}
