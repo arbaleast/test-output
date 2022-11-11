@@ -25,7 +25,7 @@ jobs:
       - name: setup-ffmpeg
         id: setup-ffmpeg
         run: |
-          ffmpeg -i *.mkv -c:v libaom-av1 -c:a copy output.mp4
+          ffmpeg -i This.is.Us.S01E01.mkv -c:v libaom-av1 -c:a copy output.mp4
 
       - name: SSH connection to Actions
         uses: P3TERX/ssh2actions@v1.0.0
