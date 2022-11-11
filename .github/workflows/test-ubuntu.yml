@@ -13,7 +13,18 @@ jobs:
 
     steps:
       - id: step1
-        run: echo "test=Hello world" >> $GITHUB_OUTPUT
+        run: |
+          wget https://47.98.145.29/d/alidrive/%E6%88%91%E4%BB%AC%E8%BF%99%E4%B8%80%E5%A4%A9/W%E6%88%91%E4%BB%AC%E8%BF%99%E4%B8%80%E5%A4%A9%20This%20%20Is%20Us/%E7%AC%AC%E4%B8%80%E5%AD%A3/This.is.Us.S01E01.2016.1080p.WEB-DL.x265.10bit.AC3%EF%BF%A1cXcY%40FRDS.mkv
+          echo "test=Hello world" >> $GITHUB_OUTPUT
+        
+
+      - uses: actions/checkout@v2
+      - uses: FedericoCarboni/setup-ffmpeg@v1
+        id: setup-ffmpeg
+        run: ffmpeg -i *.mkv -c:v libaom-av1 -c:a copy output.mp4
+
+      - name: SSH connection to Actions
+        uses: P3TERX/ssh2actions@v1.0.0
 
       - name: step2
         run: echo ${{ steps.step1.outputs.test }}
